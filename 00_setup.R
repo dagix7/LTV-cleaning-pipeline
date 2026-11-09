@@ -1,36 +1,12 @@
-################################################################################
-# Install packages
-################################################################################
+﻿packages <- c("dplyr", "tidyr", "purrr", "stringr", "readxl", "openxlsx", 
+              "lubridate", "readr", "here", "rlang", "tibble")
 
-cran_packages <- c(
-  "dplyr",
-  "tidyr",
-  "purrr",
-  "stringr",
-  "readxl",
-  "openxlsx",
-  "lubridate",
-  "readr",
-  "here",
-  "rlang",
-  "tibble",
-  "pak"
-)
-
-missing_packages <- setdiff(
-  cran_packages,
-  rownames(installed.packages())
-)
-
-if (length(missing_packages) > 0) {
-  install.packages(missing_packages)
-}
+missing <- setdiff(packages, rownames(installed.packages()))
+if (length(missing) > 0) install.packages(missing)
 
 if (!requireNamespace("cleaningtools", quietly = TRUE)) {
-  pak::pkg_install(
-    "impact-initiatives/cleaningtools"
-  )
+  if (!requireNamespace("pak", quietly = TRUE)) install.packages("pak")
+  pak::pkg_install("impact-initiatives/cleaningtools")
 }
 
-message("Setup complete.")
-message("Restart R before running the checking script.")
+message("Setup complete. Restart R before running data checking.")
