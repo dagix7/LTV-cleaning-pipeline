@@ -55,8 +55,8 @@ checks <- raw_data |>
     column_to_check = "duration_minutes",
     uuid_column = "uuid",
     log_name = "duration_log",
-    lower_bound = 10,
-    higher_bound = 180
+    lower_bound = 20,
+    higher_bound = 90
   ) |>
   cleaningtools::check_logical_with_list(
     uuid_column = "uuid",
